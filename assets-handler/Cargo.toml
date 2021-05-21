@@ -19,9 +19,9 @@ sp-runtime = { version='3.0.0', default-features = false }
 pallet-balances = { version='3.0.0', default-features = false }
 
 # ChainX
-chainx-primitives = { path='../../ChainX/primitives', default-features = false  }
-xpallet-assets = { path='../../ChainX/xpallets/assets', default-features = false }
-xpallet-assets-registrar = { path='../../ChainX/xpallets/assets-registrar', default-features = false }
+chainx-primitives = { git="https://github.com/chainx-org/ChainX", branch="update_substrate_version", default-features = false  }
+xpallet-assets = { git="https://github.com/chainx-org/ChainX", branch="update_substrate_version", default-features = false  }
+xpallet-assets-registrar = { git="https://github.com/chainx-org/ChainX", branch="update_substrate_version", default-features = false  }
 
 
 # ChainBridge
