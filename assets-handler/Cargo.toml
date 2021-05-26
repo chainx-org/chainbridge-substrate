@@ -19,10 +19,9 @@ sp-runtime = { version='3.0.0', default-features = false }
 pallet-balances = { version='3.0.0', default-features = false }
 
 # ChainX
-chainx-primitives = { git="https://github.com/chainx-org/ChainX", branch="update_substrate_version", default-features = false  }
-xpallet-assets = { git="https://github.com/chainx-org/ChainX", branch="update_substrate_version", default-features = false  }
-xpallet-assets-registrar = { git="https://github.com/chainx-org/ChainX", branch="update_substrate_version", default-features = false  }
-
+chainx-primitives = { git="https://github.com/chainx-org/ChainX", branch="expose-bitcoin-genesis", default-features = false  }
+xpallet-assets = { git="https://github.com/chainx-org/ChainX", branch="expose-bitcoin-genesis", default-features = false  }
+xpallet-assets-registrar = { git="https://github.com/chainx-org/ChainX", branch="expose-bitcoin-genesis", default-features = false  }
 
 # ChainBridge
 chainbridge = { path = "../chainbridge", default-features = false}
@@ -42,6 +41,6 @@ std = [
 	"chainx-primitives/std",
 	"xpallet-assets/std",
 	"xpallet-assets-registrar/std",
-	
+
 	"chainbridge/std",
 ]
