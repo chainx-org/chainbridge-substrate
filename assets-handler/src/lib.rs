@@ -13,8 +13,10 @@ type ResourceId = chainbridge::ResourceId;
 
 mod mock;
 mod tests;
+mod weights;
 
 pub use pallet::*;
+pub use self::weights::WeightInfo;
 
 #[frame_support::pallet]
 pub mod pallet {
@@ -30,6 +32,9 @@ pub mod pallet {
         /// Specifies the origin check provided by the bridge for calls that can
         /// only be called by the bridge pallet
         type BridgeOrigin: EnsureOrigin<Self::Origin, Success = Self::AccountId>;
+
+        /// Weight information for extrinsics in this pallet.
+        type AssetHandlerWeightInfo: WeightInfo;
     }
 
     #[pallet::error]
@@ -63,7 +68,7 @@ pub mod pallet {
 
     #[pallet::call]
     impl<T: Config> Pallet<T> {
-        #[pallet::weight(1_000_000)]
+        #[pallet::weight(T::AssetHandlerWeightInfo::register_resource_id())]
         #[transactional]
         pub fn register_resource_id(
             origin: OriginFor<T>,
@@ -83,7 +88,7 @@ pub mod pallet {
             Ok(().into())
         }
 
-        #[pallet::weight(1_000_000)]
+        #[pallet::weight(T::AssetHandlerWeightInfo::remove_resource_id())]
         #[transactional]
         pub fn remove_resource_id(
             origin: OriginFor<T>,
@@ -97,7 +102,7 @@ pub mod pallet {
             Ok(().into())
         }
 
-        #[pallet::weight(1_000_000)]
+        #[pallet::weight(T::AssetHandlerWeightInfo::redeem())]
         #[transactional]
         pub fn redeem(
             origin: OriginFor<T>,
@@ -111,7 +116,7 @@ pub mod pallet {
             Ok(().into())
         }
 
-        #[pallet::weight(1_000_000)]
+        #[pallet::weight(T::AssetHandlerWeightInfo::deposit())]
         #[transactional]
         pub fn deposit(
             origin: OriginFor<T>,
